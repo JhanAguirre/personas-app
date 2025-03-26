@@ -19,7 +19,7 @@ class ComunaController extends Controller
         //$comunas = Comuna::all ();
         $comunas = DB::table('tb_comuna')
         ->join('tb_municipio', 'tb_comuna.muni_codi', '-', 'tb_municipio.muni_codi')
-        ->select('tb_comuna.*', 'tb_municipio.muni_codi_nomb')
+        ->select('tb_comuna.*', "tb_municipio.muni_codi_nomb")
         ->get();
         return view('comuna.index',['comunas' => $comunas]);
     }
@@ -87,6 +87,14 @@ class ComunaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comuna = Comuna::find($id);
+        $comuna->delete();
+
+        $comunas = DB::table('tb_comuna')
+        ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_comuna.*', "tb_municipio.muni_nomb")
+        ->get();
+
+        return view('comuna.index', ['comunas' => $comunas]);
     }
 }
