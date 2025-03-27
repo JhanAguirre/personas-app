@@ -10,8 +10,8 @@ class Pais extends Model
     use HasFactory;
 
     protected $table = 'tb_pais';
-    protected $primaryKey = 'pais_codi'; // Asegúrate de que esta sea tu clave primaria
-    protected $keyType = 'string'; // Si la clave primaria es una cadena (CHAR)
+    protected $primaryKey = 'pais_codi';
+    protected $keyType = 'string'; 
     protected $fillable = ['pais_nomb'];
 
     public function departamentos()
@@ -19,3 +19,4 @@ class Pais extends Model
         return $this->hasMany(Departamento::class, 'pais_codi', 'pais_codi');
     }
 }
+

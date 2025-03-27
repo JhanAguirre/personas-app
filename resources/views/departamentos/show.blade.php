@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Detalles del Departamento</h1>
-        <p><strong>ID:</strong> {{ $departamento->dep_codi }}</p>
+        <p><strong>ID:</strong> {{ $departamento->depa_codi }}</p>
         <p><strong>Nombre:</strong> {{ $departamento->dep_nomb }}</p>
         <p><strong>País:</strong> {{ $departamento->pais ? $departamento->pais->pais_nomb : 'N/A' }}</p>
         <a href="{{ route('departamentos.index') }}" class="btn btn-secondary">Volver al Listado</a>

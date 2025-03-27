@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Editar Departamento</h1>
-        <form action="{{ route('departamentos.update', $departamento->dep_codi) }}" method="POST">
+        <form action="{{ route('departamentos.update', $departamento->depa_codi) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

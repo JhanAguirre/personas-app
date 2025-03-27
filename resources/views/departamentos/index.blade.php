@@ -29,13 +29,13 @@
             <tbody>
                 @forelse ($departamentos as $departamento)
                     <tr>
-                        <td>{{ $departamento->dep_codi }}</td>
+                        <td>{{ $departamento->depa_codi }}</td>
                         <td>{{ $departamento->dep_nomb }}</td>
                         <td>{{ $departamento->pais ? $departamento->pais->pais_nomb : 'N/A' }}</td>
                         <td>
-                            <a href="{{ route('departamentos.show', $departamento->dep_codi) }}" class="btn btn-sm btn-info">Ver</a>
-                            <a href="{{ route('departamentos.edit', $departamento->dep_codi) }}" class="btn btn-sm btn-primary">Editar</a>
-                            <form action="{{ route('departamentos.destroy', $departamento->dep_codi) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('departamentos.show', $departamento->depa_codi) }}" class="btn btn-sm btn-info">Ver</a>
+                            <a href="{{ route('departamentos.edit', $departamento->depa_codi) }}" class="btn btn-sm btn-primary">Editar</a>
+                            <form action="{{ route('departamentos.destroy', $departamento->depa_codi) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</button>

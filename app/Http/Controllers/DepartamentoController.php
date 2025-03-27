@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
-use App\Models\Pais; // Importa el modelo Pais
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
@@ -32,12 +32,12 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dep_nomb' => 'required|string|max:255',
-            'pais_codi' => 'required|exists:tb_pais,pais_codi', // Asegurar que el país exista
+            'dep_nomb' => 'required|string|max:255', // El campo del formulario se llama dep_nomb
+            'pais_codi' => 'required|exists:tb_pais,pais_codi',
         ]);
 
         $departamento = new Departamento();
-        $departamento->dep_nomb = $request->input('dep_nomb');
+        $departamento->depa_nomb = $request->input('dep_nomb'); // Usando depa_nomb
         $departamento->pais_codi = $request->input('pais_codi');
         $departamento->save();
 
@@ -69,12 +69,12 @@ class DepartamentoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'dep_nomb' => 'required|string|max:255',
-            'pais_codi' => 'required|exists:tb_pais,pais_codi', // Asegurar que el país exista
+            'dep_nomb' => 'required|string|max:255', // El campo del formulario se llama dep_nomb
+            'pais_codi' => 'required|exists:tb_pais,pais_codi',
         ]);
 
         $departamento = Departamento::findOrFail($id);
-        $departamento->dep_nomb = $request->input('dep_nomb');
+        $departamento->depa_nomb = $request->input('dep_nomb'); // Usando depa_nomb
         $departamento->pais_codi = $request->input('pais_codi');
         $departamento->save();
 
