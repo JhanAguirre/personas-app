@@ -12,7 +12,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        $paises = Pais::all(); // Obtener todos los países
+        $paises = Pais::all();
         return view('paises.index', compact('paises'));
     }
 
@@ -30,7 +30,7 @@ class PaisController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pais_codi' => 'required|string|size:3|unique:tb_pais,pais_codi', // Código de país único y de 3 caracteres
+            'pais_codi' => 'required|string|size:3|unique:tb_pais,pais_codi',
             'pais_nomb' => 'required|string|max:255',
         ]);
 
