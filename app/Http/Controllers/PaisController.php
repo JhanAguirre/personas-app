@@ -30,13 +30,15 @@ class PaisController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pais_codi' => 'required|string|size:3|unique:tb_pais,pais_codi',
+            'pais_codi' => 'required|string|max:10|unique:tb_pais,pais_codi',
             'pais_nomb' => 'required|string|max:255',
+            'pais_capi' => 'nullable|string|max:255',
         ]);
 
         $pais = new Pais();
         $pais->pais_codi = $request->input('pais_codi');
         $pais->pais_nomb = $request->input('pais_nomb');
+        $pais->pais_capi = $request->input('pais_capi');
         $pais->save();
 
         return redirect()->route('paises.index')->with('success', 'País creado exitosamente.');
@@ -66,11 +68,15 @@ class PaisController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'pais_codi' => 'required|string|max:10|unique:tb_pais,pais_codi,' . $id . ',pais_codi',
             'pais_nomb' => 'required|string|max:255',
+            'pais_capi' => 'nullable|string|max:255',
         ]);
 
         $pais = Pais::findOrFail($id);
+        $pais->pais_codi = $request->input('pais_codi');
         $pais->pais_nomb = $request->input('pais_nomb');
+        $pais->pais_capi = $request->input('pais_capi');
         $pais->save();
 
         return redirect()->route('paises.index')->with('success', 'País actualizado exitosamente.');

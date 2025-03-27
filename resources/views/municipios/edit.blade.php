@@ -21,16 +21,16 @@
             </div>
 
             <div class="mb-3">
-                <label for="dep_codi" class="form-label">Departamento:</label>
-                <select class="form-select @error('dep_codi') is-invalid @enderror" id="dep_codi" name="dep_codi" required>
+                <label for="depa_codi" class="form-label">Departamento:</label>
+                <select class="form-select @error('depa_codi') is-invalid @enderror" id="dep_codi" name="depa_codi" required>
                     <option value="">Seleccionar Departamento</option>
                     @foreach ($departamentos as $departamento)
-                        <option value="{{ $departamento->dep_codi }}" {{ old('dep_codi', $municipio->dep_codi) == $departamento->dep_codi ? 'selected' : '' }}>
+                        <option value="{{ $departamento->depa_codi }}" {{ old('depa_codi', $municipio->depa_codi) == $departamento->depa_codi ? 'selected' : '' }}>
                             {{ $departamento->dep_nomb }}
                         </option>
                     @endforeach
                 </select>
-                @error('dep_codi')
+                @error('depa_codi')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

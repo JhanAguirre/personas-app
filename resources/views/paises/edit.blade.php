@@ -13,11 +13,24 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
+                <label for="pais_codi" class="form-label">Código del País:</label>
+                <input type="text" class="form-control @error('pais_codi') is-invalid @enderror" id="pais_codi" name="pais_codi" value="{{ old('pais_codi', $pais->pais_codi) }}" required readonly>
+                @error('pais_codi')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="pais_nomb" class="form-label">Nombre del País:</label>
                 <input type="text" class="form-control @error('pais_nomb') is-invalid @enderror" id="pais_nomb" name="pais_nomb" value="{{ old('pais_nomb', $pais->pais_nomb) }}" required>
                 @error('pais_nomb')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="pais_capi" class="form-label">Capital del País:</label>
+                <input type="text" class="form-control" id="pais_capi" name="pais_capi" value="{{ old('pais_capi', $pais->pais_capi) }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Actualizar</button>

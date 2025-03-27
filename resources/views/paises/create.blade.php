@@ -13,7 +13,7 @@
             @csrf
             <div class="mb-3">
                 <label for="pais_codi" class="form-label">Código del País:</label>
-                <input type="text" class="form-control @error('pais_codi') is-invalid @enderror" id="pais_codi" name="pais_codi" value="{{ old('pais_codi') }}" required maxlength="3">
+                <input type="text" class="form-control @error('pais_codi') is-invalid @enderror" id="pais_codi" name="pais_codi" value="{{ old('pais_codi') }}" required>
                 @error('pais_codi')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -25,6 +25,11 @@
                 @error('pais_nomb')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="pais_capi" class="form-label">Capital del País:</label>
+                <input type="text" class="form-control" id="pais_capi" name="pais_capi" value="{{ old('pais_capi') }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>

@@ -11,16 +11,11 @@ class Departamento extends Model
 
     protected $table = 'tb_departamento';
     protected $primaryKey = 'depa_codi';
-    protected $fillable = ['depa_nomb', 'pais_codi'];
+    protected $fillable = ['depa_nomb', 'pais_nomb'];
     public $timestamps = false;
 
     public function pais()
     {
-        return $this->belongsTo(Pais::class, 'pais_codi', 'pais_codi');
-    }
-
-    public function municipios()
-    {
-        return $this->hasMany(Municipio::class, 'depa_codi', 'depa_codi');
+        return $this->belongsTo(Pais::class, 'pais_codi', 'pais_codi'); // Descomentado y definido
     }
 }

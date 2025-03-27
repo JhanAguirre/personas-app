@@ -22,6 +22,7 @@
                 <tr>
                     <th>Código</th>
                     <th>Nombre</th>
+                    <th>Capital</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <tr>
                         <td>{{ $pais->pais_codi }}</td>
                         <td>{{ $pais->pais_nomb }}</td>
+                        <td>{{ $pais->pais_capi ?? 'N/A' }}</td>
                         <td>
                             <a href="{{ route('paises.show', $pais->pais_codi) }}" class="btn btn-sm btn-info">Ver</a>
                             <a href="{{ route('paises.edit', $pais->pais_codi) }}" class="btn btn-sm btn-primary">Editar</a>
@@ -42,7 +44,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3">No hay países registrados.</td>
+                        <td colspan="4">No hay países registrados.</td>
                     </tr>
                 @endforelse
             </tbody>

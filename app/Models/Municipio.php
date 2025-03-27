@@ -2,16 +2,26 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Municipio extends Model
 {
-    protected $table = 'tb_municipio'; // Si el nombre de la tabla no es 'municipios'
-    protected $primaryKey = 'muni_codi'; // Si la clave primaria no es 'id'
-    public $timestamps = false; // Si no tienes created_at y updated_at
+    use HasFactory;
 
+    protected $table = 'tb_municipio'; 
+    protected $primaryKey = 'muni_codi'; 
+    protected $fillable = ['muni_nomb', 'depa_codi']; 
+    public $timestamps = false; 
+
+   
     public function departamento()
     {
-        return $this->belongsTo(Departamento::class, 'dep_codi', 'dep_codi');
+        return $this->belongsTo(Departamento::class, 'depa_codi', 'depa_codi');
+    }
+
+    public function comunas()
+    {
+        return $this->hasMany(Comuna::class, 'muni_codi', 'muni_codi');
     }
 }
