@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 class PaisController extends Controller
@@ -11,7 +12,8 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Pais::all(); // Obtener todos los países
+        return view('paises.index', compact('paises'));
     }
 
     /**
@@ -19,7 +21,7 @@ class PaisController extends Controller
      */
     public function create()
     {
-        //
+        return view('paises.create');
     }
 
     /**
@@ -27,7 +29,17 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pais_codi' => 'required|string|size:3|unique:tb_pais,pais_codi', // Código de país único y de 3 caracteres
+            'pais_nomb' => 'required|string|max:255',
+        ]);
+
+        $pais = new Pais();
+        $pais->pais_codi = $request->input('pais_codi');
+        $pais->pais_nomb = $request->input('pais_nomb');
+        $pais->save();
+
+        return redirect()->route('paises.index')->with('success', 'País creado exitosamente.');
     }
 
     /**
@@ -35,7 +47,8 @@ class PaisController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+        return view('paises.show', compact('pais'));
     }
 
     /**
@@ -43,7 +56,8 @@ class PaisController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+        return view('paises.edit', compact('pais'));
     }
 
     /**
@@ -51,7 +65,15 @@ class PaisController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'pais_nomb' => 'required|string|max:255',
+        ]);
+
+        $pais = Pais::findOrFail($id);
+        $pais->pais_nomb = $request->input('pais_nomb');
+        $pais->save();
+
+        return redirect()->route('paises.index')->with('success', 'País actualizado exitosamente.');
     }
 
     /**
@@ -59,6 +81,8 @@ class PaisController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+        $pais->delete();
+        return redirect()->route('paises.index')->with('success', 'País eliminado exitosamente.');
     }
 }
